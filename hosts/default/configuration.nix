@@ -100,45 +100,45 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-    neovim
-    wget
-    curl
-    git
-    chromium
-    docker
-    docker-compose
-    vscode
-    kitty
-    fish
-    fzf
-    fd
-    bat
-    gnumake
-    gcc
-    gnome-keyring
-    libsecret
-    libgnome-keyring
-    xdg-utils
-    gh
-    mkcert
-    starship
-    fastfetch
-    htop
-    lazygit
-    lazydocker
-    openssl
-    stow
-    lua
-    luarocks
-    nodejs
-    ripgrep
-    unzip
-    tree-sitter
-    xclip
-    lua-language-server
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   vim
+  #   neovim
+  #   wget
+  #   curl
+  #   git
+  #   chromium
+  #   docker
+  #   docker-compose
+  #   vscode
+  #   kitty
+  #   fish
+  #   fzf
+  #   fd
+  #   bat
+  #   gnumake
+  #   gcc
+  #   gnome-keyring
+  #   libsecret
+  #   libgnome-keyring
+  #   xdg-utils
+  #   gh
+  #   mkcert
+  #   starship
+  #   fastfetch
+  #   htop
+  #   lazygit
+  #   lazydocker
+  #   openssl
+  #   stow
+  #   lua
+  #   luarocks
+  #   nodejs
+  #   ripgrep
+  #   unzip
+  #   tree-sitter
+  #   xclip
+  #   lua-language-server
+  # ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

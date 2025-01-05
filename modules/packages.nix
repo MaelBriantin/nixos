@@ -38,6 +38,7 @@
     tree-sitter
     xclip
     lua-language-server
+    yazi
   ];
 }
 
