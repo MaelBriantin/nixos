@@ -25,20 +25,18 @@
     mkcert
     starship
     fastfetch
-    htop
+    btop
     lazygit
     lazydocker
     openssl
-    stow
     lua
     luarocks
     nodejs
     ripgrep
     unzip
-    tree-sitter
     xclip
-    lua-language-server
-    yazi
+    home-manager
+    ghostty
   ];
 }
 

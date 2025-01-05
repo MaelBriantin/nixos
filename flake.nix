@@ -1,36 +1,35 @@
 {
-  description = "NixOS Configuration with Ghostty terminal";
+  description = "Home Manager configuration of mael";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ghostty.url = "github:ghostty-org/ghostty";
   };
 
-  outputs = { self, nixpkgs, ghostty, ... }@inputs: 
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
+    in {
       nixosConfigurations = {
         default = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs;};
+          specialArgs = {
+            inherit inputs system;
+          };
           modules = [
-            ./hosts/default/configuration.nix
-            ./modules/users.nix
-            ./modules/packages.nix
-	    inputs.home-manager.nixosModules.default
-            {
-              environment.systemPackages = [
-                ghostty.packages.x86_64-linux.default
-              ];
-            }
+            /home/mael/nixos/configuration.nix
+            /home/mael/nixos/modules/users.nix
+            /home/mael/nixos/modules/packages.nix
           ];
-	};
+        };
       };
     };
 }

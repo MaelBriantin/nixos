@@ -1,0 +1,13 @@
+font-family = Fira Code Nerd Font
+font-size = 14
+theme = Oxocarbon
+cursor-style = block
+adjust-cell-height = 35%
+mouse-hide-while-typing = true
+macos-titlebar-style = hidden
+window-theme = ghostty
+window-padding-balance = true
+window-save-state = always
+gtk-titlebar = false
+background-opacity = 0.95
+link-url = true
