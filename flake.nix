@@ -20,14 +20,24 @@
       };
     in {
       nixosConfigurations = {
-        default = nixpkgs.lib.nixosSystem {
+        dev = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs system;
           };
           modules = [
-            /home/mael/nixos/configuration.nix
-            /home/mael/nixos/modules/users.nix
+            /home/mael/nixos/hosts/dev/configuration.nix
             /home/mael/nixos/modules/packages.nix
+            /home/mael/nixos/modules/users.nix
+          ];
+        };
+        home = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs system;
+          };
+          modules = [
+            /home/mael/nixos/hosts/home/configuration.nix
+            /home/mael/nixos/modules/packages.nix
+            /home/mael/nixos/modules/users.nix
           ];
         };
       };
