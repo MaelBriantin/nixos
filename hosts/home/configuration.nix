@@ -62,7 +62,10 @@
   services.printing.enable = true;
 
   # Enable openGL libraries.
-  hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
