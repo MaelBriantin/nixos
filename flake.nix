@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration of mael";
+  description = "home manager configuration of mael";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -20,24 +20,24 @@
       };
     in {
       nixosConfigurations = {
-        dev = nixpkgs.lib.nixosSystem {
+        rogue = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs system;
           };
           modules = [
 	    /etc/nixos/hardware-configuration.nix
-            ./hosts/dev/configuration.nix
+            ./hosts/rogue/configuration.nix
             ./modules/packages.nix
             ./modules/users.nix
           ];
         };
-        home = nixpkgs.lib.nixosSystem {
+        berzerker = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs system;
           };
           modules = [
 	    /etc/nixos/hardware-configuration.nix
-            ./hosts/home/configuration.nix
+            ./hosts/berzerker/configuration.nix
             ./modules/packages.nix
             ./modules/users.nix
           ];

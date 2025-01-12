@@ -49,6 +49,20 @@
     enable = true;
   };
 
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting
+      starship init fish | source
+      set -u fish_user_paths $home/.nix-profile/bin $fish_user_paths
+      export path="/home/mael/.config/herd-lite/bin:$path"
+      alias dc="docker compose"
+    '';
+    plugins = [
+      { name = "fzf"; src = pkgs.fishPlugins.fzf; }
+    ];
+  };
+
   home.file.".config/nvim".source = ../../dotfiles/nvim; 
   
   home.file.".config/ghostty".source = ../../dotfiles/ghostty; 

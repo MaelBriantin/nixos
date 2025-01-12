@@ -2,14 +2,13 @@
 
 {
   home.username = "mael";
-  home.homeDirectory = "/home/mael";
+  home.homedirectory = "/home/mael";
 
-  home.stateVersion = "24.11"; # Please read the comment before changing.
+  home.stateversion = "24.11"; # please read the comment before changing.
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowunfree = true;
 
   home.packages = [
-    # Gaming
     pkgs.discord
     pkgs.lutris
     pkgs.steam
@@ -18,8 +17,8 @@
   programs.git =
   {
     enable = true;
-    userEmail = "mael.briantin@proton.me";
-    userName = "MaelBriantin";
+    useremail = "mael.briantin@proton.me";
+    username = "maelbriantin";
     aliases =
     {
       st = "status";
@@ -31,7 +30,7 @@
       aa = "add --all";
       ca = "commit --amend";
       cm = "commit -m";
-      lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+      lg = "log --graph --pretty=format:'%cred%h%creset -%c(yellow)%d%creset %s %cgreen(%cr) %c(bold blue)<%an>%creset' --abbrev-commit";
       ps = "push";
       pl = "pull";
       me = "merge";
@@ -51,6 +50,10 @@
     enable = true;
   };
 
+  programs.fish = {
+    enable = true;
+  };
+
   home.file.".config/nvim".source = ../../dotfiles/nvim; 
   
   home.file.".config/ghostty".source = ../../dotfiles/ghostty; 
@@ -58,8 +61,8 @@
   home.file = {
   };
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
+  home.sessionvariables = {
+    editor = "nvim";
   };
 
   programs.home-manager.enable = true;
