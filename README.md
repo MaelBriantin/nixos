@@ -35,11 +35,6 @@ it is necessary to switch to the unstable channel.
     sudo nixos-rebuild switch --upgrade
     ```
 
-**Note**:
-
-Make sure to carefully test the unstable channel, as it may contain less stable software. 
-Consider backing up your system before proceeding.
-
 ### Or run the commands in one line
 
 ```bash
@@ -54,8 +49,8 @@ sudo nixos-rebuild switch --upgrade
 
 There is multiple configurations, each ones with some specific trick.
 
-- **rogue** for my dev laptop.
-- **berzerker** for my personal gaming rig.
+- **berzerker** for my personal gaming rig (Ryzen 5 7600 / Radeon 7900 GRE / 32 Go DDR5)
+- **rogue** for my dev laptop (Thinkpad X13 Gen 5 / Intel)
 <!--- **wizard** for my personal server.-->
 
 ### Run the build command
