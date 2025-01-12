@@ -1,6 +1,9 @@
-# Switching to the Unstable Channel on NixOS
+# Installation guide
 
 ## Switch to the unstable channel on NixOS
+
+In order to use all the packages listed in `modules/packages.nix`, like `ghostty`, 
+it is necessary to switch to the unstable channel.
 
 1. **Check the current channels**:
 
