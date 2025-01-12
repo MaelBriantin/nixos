@@ -49,9 +49,9 @@
     enable = true;
   };
 
-  home.file.".config/nvim".source = "/home/mael/nixos/dotfiles/nvim"; 
+  home.file.".config/nvim".source = ../../dotfiles/nvim; 
   
-  home.file.".config/ghostty".source = "/home/mael/nixos/dotfiles/ghostty"; 
+  home.file.".config/ghostty".source = ../../dotfiles/ghostty; 
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

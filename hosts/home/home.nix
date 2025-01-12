@@ -51,9 +51,9 @@
     enable = true;
   };
 
-  home.file.".config/nvim".source = "/home/mael/nixos/dotfiles/nvim"; 
+  home.file.".config/nvim".source = ../../dotfiles/nvim; 
   
-  home.file.".config/ghostty".source = "/home/mael/nixos/dotfiles/ghostty"; 
+  home.file.".config/ghostty".source = ../../dotfiles/ghostty; 
 
   home.file = {
   };

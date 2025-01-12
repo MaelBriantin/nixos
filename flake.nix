@@ -25,9 +25,10 @@
             inherit inputs system;
           };
           modules = [
-            /home/mael/nixos/hosts/dev/configuration.nix
-            /home/mael/nixos/modules/packages.nix
-            /home/mael/nixos/modules/users.nix
+	    /etc/nixos/hardware-configuration.nix
+            ./hosts/dev/configuration.nix
+            ./modules/packages.nix
+            ./modules/users.nix
           ];
         };
         home = nixpkgs.lib.nixosSystem {
@@ -35,9 +36,10 @@
             inherit inputs system;
           };
           modules = [
-            /home/mael/nixos/hosts/home/configuration.nix
-            /home/mael/nixos/modules/packages.nix
-            /home/mael/nixos/modules/users.nix
+	    /etc/nixos/hardware-configuration.nix
+            ./hosts/home/configuration.nix
+            ./modules/packages.nix
+            ./modules/users.nix
           ];
         };
       };
