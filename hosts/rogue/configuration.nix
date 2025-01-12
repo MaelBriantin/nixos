@@ -10,6 +10,17 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # Enable flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Enable home-manager
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      mael = import ./home.nix;
+    };
+  };
+
   networking.hostName = "nixos";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -83,19 +94,26 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-  programs.fish.enable = true;
+
+  # Install and init fish
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting
+    '';
+    promptInit = ''
+      starship init fish | source
+    '';
+    shellAliases = {
+      dc = "docker compose";
+    };
+  };
+
+  # Install starfish
+  programs.starship.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      mael = import ./home.nix;
-    };
-  };
 
   fonts.packages = with pkgs; [
     nerd-fonts.monaspace
@@ -105,7 +123,6 @@
     nerd-fonts.commit-mono
   ];
 
-  
   programs.neovim.enable = true;
   environment.variables = {
     EDITOR = "nvim";
@@ -124,6 +141,7 @@
 
   services.flatpak.enable = true;
 
+  # Enable and configure docker
   virtualisation.docker.enable = true;
   virtualisation.docker.rootless = {
       enable = true;

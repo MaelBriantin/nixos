@@ -10,11 +10,31 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # Enable flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Enable home-manager
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      mael = import ./home.nix;
+    };
+  };
+
   networking.hostName = "nixos";
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Enable networking
   networking.networkmanager.enable = true;
 
+  # Set your time zone.
   time.timeZone = "Europe/Paris";
 
+  # Select internationalisation properties.
   i18n.defaultLocale = "fr_FR.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -29,27 +49,32 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
+  # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+  # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "intl";
   };
 
+  # Install graphical drivers.
   services.xserver.videoDrivers = [ "auto" ];
 
+  # Configure console keymap
   console.keyMap = "us-acentos";
 
+  # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
+  # Enable openGL libraries.
+  hardware.graphics.enable = true;
 
+  # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -64,21 +89,31 @@
     #media-session.enable = true;
   };
 
+  # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
+  # Install firefox.
   programs.firefox.enable = true;
-  programs.fish.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      mael = import ./home.nix;
+  # Install and init fish
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting
+    '';
+    promptInit = ''
+      starship init fish | source
+    '';
+    shellAliases = {
+      dc = "docker compose";
     };
   };
+
+  # Install starfish
+  programs.starship.enable = true;
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   fonts.packages = with pkgs; [
     nerd-fonts.monaspace
@@ -88,7 +123,6 @@
     nerd-fonts.commit-mono
   ];
 
-  
   programs.neovim.enable = true;
   environment.variables = {
     EDITOR = "nvim";
@@ -102,10 +136,12 @@
   #   enableSSHSupport = true;
   # };
 
+  # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
   services.flatpak.enable = true;
 
+  # Enable and configure docker
   virtualisation.docker.enable = true;
   virtualisation.docker.rootless = {
       enable = true;

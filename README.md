@@ -53,7 +53,7 @@ There is multiple configurations, each ones with some specific trick.
 
 - **rogue** for my dev laptop.
 - **berzerker** for my personal gaming rig.
-- **wizard** for my personal server.
+<!--- **wizard** for my personal server.-->
 
 ### Run the build command
 

@@ -10,6 +10,7 @@
     docker-compose
     fd
     fish
+    fishPlugins.fzf
     fzf
     ghostty
     git
