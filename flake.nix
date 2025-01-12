@@ -1,5 +1,5 @@
 {
-  description = "home manager configuration of mael";
+  description = "my nixos config for all programming dungeons";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -14,34 +14,25 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
-        config = {
-          allowUnfree = true;
+        config.allowUnfree = true;
+      };
+
+      # Function to factorise all NixOS config
+      makeNixosConfig = host: nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs system;
         };
+        modules = [
+          /etc/nixos/hardware-configuration.nix
+          ./hosts/${host}/configuration.nix
+          ./modules/packages.nix
+          ./modules/users.nix
+        ];
       };
     in {
       nixosConfigurations = {
-        rogue = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs system;
-          };
-          modules = [
-	    /etc/nixos/hardware-configuration.nix
-            ./hosts/rogue/configuration.nix
-            ./modules/packages.nix
-            ./modules/users.nix
-          ];
-        };
-        berzerker = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs system;
-          };
-          modules = [
-	    /etc/nixos/hardware-configuration.nix
-            ./hosts/berzerker/configuration.nix
-            ./modules/packages.nix
-            ./modules/users.nix
-          ];
-        };
+        rogue = makeNixosConfig "rogue";
+        berzerker = makeNixosConfig "berzerker";
       };
     };
 }
