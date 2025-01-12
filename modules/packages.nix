@@ -9,9 +9,11 @@
     docker
     docker-compose
     fd
+    firefox-devedition
     fish
     fishPlugins.fzf
     fzf
+    gcc
     ghostty
     git
     gh
