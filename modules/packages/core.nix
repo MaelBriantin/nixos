@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -10,37 +10,22 @@
     docker
     docker-compose
     fd
+    firefox
     firefox-devedition
     fish
     fzf
-    gcc
-    ghostty
-    git
-    gh
     gnome-keyring
-    gnumake
-    home-manager
-    lazydocker
-    lazygit
     libgnome-keyring
     libsecret
-    lua
-    luarocks
-    mesa
     mkcert
-    neovim
-    nodejs
     openssl
-    pnpm
     ripgrep
     starship
     thunderbird
     unzip
-    vim
-    vscode
-    wget
     xclip
     xdg-utils
     zsh
   ];
 }
+

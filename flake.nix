@@ -9,30 +9,40 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs: 
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
-
-      # Function to factorise all NixOS config
-      makeNixosConfig = host: nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs system;
-        };
-        modules = [
-          /etc/nixos/hardware-configuration.nix
-          ./hosts/${host}/configuration.nix
-          ./modules/packages.nix
-          ./modules/users.nix
-        ];
-      };
     in {
       nixosConfigurations = {
-        rogue = makeNixosConfig "rogue";
-        berzerker = makeNixosConfig "berzerker";
+        rogue = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs system;
+          };
+          modules = [
+            /etc/nixos/hardware-configuration.nix
+            ./hosts/rogue/configuration.nix
+            ./modules/users.nix
+            ./modules/packages/core.nix
+            ./modules/packages/fonts.nix
+            ./modules/packages/programming.nix
+          ];
+        };
+        berzerker = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs system;
+          };
+          modules = [
+            /etc/nixos/hardware-configuration.nix
+            ./hosts/berzerker/configuration.nix
+            ./modules/users.nix
+            ./modules/packages/core.nix
+            ./modules/packages/fonts.nix
+          ];
+        };
       };
     };
 }
