@@ -9,9 +9,6 @@
   nixpkgs.config.allowunfree = true;
 
   home.packages = [
-    pkgs.discord
-    pkgs.lutris
-    pkgs.steam
   ];
 
   programs.git =

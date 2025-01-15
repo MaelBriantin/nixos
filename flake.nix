@@ -9,40 +9,37 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: 
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
+
+      makeNixosConfig = host: extraModules: nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs system;
+        };
+        # Common modules
+        modules = [
+          /etc/nixos/hardware-configuration.nix
+          ./hosts/${host}/configuration.nix
+          ./modules/users.nix
+          ./modules/packages/core.nix
+          ./modules/packages/fonts.nix
+        ] ++ extraModules;
+      };
     in {
       nixosConfigurations = {
-        rogue = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs system;
-          };
-          modules = [
-            /etc/nixos/hardware-configuration.nix
-            ./hosts/rogue/configuration.nix
-            ./modules/users.nix
-            ./modules/packages/core.nix
-            ./modules/packages/fonts.nix
-            ./modules/packages/programming.nix
-          ];
-        };
-        berzerker = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs system;
-          };
-          modules = [
-            /etc/nixos/hardware-configuration.nix
-            ./hosts/berzerker/configuration.nix
-            ./modules/users.nix
-            ./modules/packages/core.nix
-            ./modules/packages/fonts.nix
-          ];
-        };
+        rogue = makeNixosConfig "rogue" [
+          # Extra modules for rogue
+          ./modules/packages/programming.nix
+        ];
+
+        berzerker = makeNixosConfig "berzerker" [
+          # Extra modules for berzerker
+        ];
       };
     };
 }
