@@ -7,25 +7,28 @@
     btop
     chromium
     curl
-    docker
-    docker-compose
+    deno
+    fastfetch
     fd
     firefox
-    firefox-devedition
     fish
     fzf
+    ghostty
+    git
     gnome-keyring
+    home-manager
+    intelephense
     libgnome-keyring
     libsecret
-    mkcert
+    mesa
+    neovim
+    nitch
     openssl
     ripgrep
     starship
-    thunderbird
     unzip
     xclip
     xdg-utils
-    zsh
   ];
 }
 
