@@ -23,11 +23,11 @@
         };
         # Common modules
         modules = [
-          /etc/nixos/hardware-configuration.nix
           ./hosts/${host}/configuration.nix
-          ./modules/users.nix
           ./modules/packages/core.nix
           ./modules/packages/fonts.nix
+          ./modules/users.nix
+          /etc/nixos/hardware-configuration.nix
         ] ++ extraModules;
       };
     in {
@@ -37,8 +37,8 @@
           ./modules/packages/programming.nix
         ];
 
-        berzerker = makeNixosConfig "berzerker" [
-          # Extra modules for berzerker
+        berserker = makeNixosConfig "berserker" [
+          # Extra modules for berserker
         ];
       };
     };

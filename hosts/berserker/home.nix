@@ -1,4 +1,4 @@
-# Rogue's Home Manager configuration
+# Home Manager configuration for Berserker profile
 { config, pkgs, ... }:
 
 {
@@ -12,7 +12,13 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    pkgs.steam
+    pkgs.lutris
+    pkgs.discord
+    pkgs.heroic
   ];
+
+  nixpkgs.config.allowUnfree = true;
 
   programs.git =
   {

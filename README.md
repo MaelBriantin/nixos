@@ -49,7 +49,7 @@ sudo nixos-rebuild switch --upgrade
 
 There is multiple configurations, each ones with some specific trick.
 
-- **berzerker** for my personal gaming rig (Ryzen 5 7600 / Radeon 7900 GRE / 32 Go DDR5)
+- **berserker** for my personal gaming rig (Ryzen 5 7600 / Radeon 7900 GRE / 32 Go DDR5)
 - **rogue** for my dev laptop (Thinkpad X13 Gen 5 / Intel)
 <!--- **wizard** for my personal server.-->
 
