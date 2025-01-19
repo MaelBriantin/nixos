@@ -2,22 +2,28 @@
 
 {
   environment.systemPackages = with pkgs; [
+    dbeaver-bin
+    docker
+    docker-compose
+    firefox-devedition
     gcc
-    ghostty
-    git
     gh
     gnumake
     home-manager
     lazydocker
     lazygit
     lua
+    lua-language-server
     luarocks
-    mesa
-    neovim
+    markdownlint-cli
+    marksman
+    mkcert
     nodejs
     pnpm
+    typescript-language-server
     vscode
     wget
+    zsh
   ];
 }
 
