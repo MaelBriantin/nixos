@@ -666,13 +666,43 @@ require('lazy').setup({
         },
       }
 
+      lspconfig.nixd.setup({
+        cmd = { "nixd" },
+        settings = {
+          nixd = {
+            nixpkgs = {
+              expr = "import <nixpkgs> { }",
+            },
+            formatting = {
+              command = { "nixfmt" },
+            },
+            options = {
+              nixos = {
+                expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.k-on.options',
+              },
+              home_manager = {
+                expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."ruixi@k-on".options',
+              },
+            },
+          },
+        },
+      })
+
+      lspconfig.html.setup({
+        cmd = { "vscode-langservers-extracted" },
+        filetypes = { "javascript", "javascriptreact", "javascript.jsx", "html", "css", "scss", "json" },
+        root_dir = lspconfig.util.root_pattern("package.json"),
+        embedded_languages = {
+          css = true,
+          scss = true,
+          json = true,
+          javascript = true,
+        },
+      })
+
       lspconfig.denols.setup({
         cmd = { "deno", "lsp" },
         filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-        -- root_dir = function(startpath)
-        --   return lspconfig.util.root_pattern("deno.json", "deno.jsonc")(startpath)
-        --       or lspconfig.util.root_pattern("package.json")(startpath)
-        -- end,
         root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
         init_options = {
           enable = true,
@@ -681,16 +711,16 @@ require('lazy').setup({
         },
       })
 
-      -- lspconfig.ts_ls.setup({
-      --   cmd = { "typescript-language-server", "--stdio" },
-      --   filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-      --   root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", "package.json"),
-      --   settings = {
-      --     tsserver = {
-      --       enable = true,
-      --     },
-      --   },
-      -- })
+      lspconfig.ts_ls.setup({
+        cmd = { "typescript-language-server", "--stdio" },
+        filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+        root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", "package.json"),
+        settings = {
+          tsserver = {
+            enable = true,
+          },
+        },
+      })
 
       lspconfig.intelephense.setup({
         cmd = { "intelephense", "--stdio" },

@@ -18,10 +18,12 @@
     markdownlint-cli
     marksman
     mkcert
+    nixd
     nodejs
     pnpm
     typescript-language-server
     vscode
+    vscode-langservers-extracted
     wget
     zsh
   ];
