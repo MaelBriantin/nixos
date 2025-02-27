@@ -711,6 +711,7 @@ require('lazy').setup({
         },
       })
 
+
       lspconfig.ts_ls.setup({
         cmd = { "typescript-language-server", "--stdio" },
         filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
@@ -720,6 +721,10 @@ require('lazy').setup({
             enable = true,
           },
         },
+        on_attach = function(client, bufnr)
+          local opts = { noremap = true, silent = true, buffer = bufnr }
+          vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+        end
       })
 
       lspconfig.intelephense.setup({

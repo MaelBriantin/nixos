@@ -10,6 +10,7 @@
     gh
     gnumake
     home-manager
+    jq
     lazydocker
     lazygit
     lua
@@ -20,6 +21,8 @@
     mkcert
     nixd
     nodejs
+    openvpn
+    openconnect
     pnpm
     typescript-language-server
     vscode
