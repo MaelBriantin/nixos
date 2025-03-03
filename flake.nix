@@ -39,6 +39,8 @@
 
         berserker = makeNixosConfig "berserker" [
           # Extra modules for berserker
+          ./modules/packages/programming.nix
+          ./modules/packages/gaming.nix
         ];
       };
     };
