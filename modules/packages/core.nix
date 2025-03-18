@@ -1,11 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ pkgs,... }:
 
 {
   environment.systemPackages = with pkgs; [
     bash
     bat
     btop
-    chromium
     curl
     deno
     fastfetch
@@ -26,6 +25,7 @@
     openssl
     ripgrep
     starship
+    ungoogled-chromium
     unzip
     xclip
     xdg-utils
