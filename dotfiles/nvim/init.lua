@@ -403,6 +403,23 @@ require('lazy').setup({
         },
       }
 
+      -- Open or create a new note for the current day
+      local function open_or_create_note()
+        local date = os.date("%y%m%d")
+        local file_path = vim.fn.expand("~/Documents/notes/note-" .. date .. ".md")
+
+        print("Trying to open or create note at: " .. file_path)
+
+        if vim.fn.filereadable(file_path) == 1 then
+          print("File exists, opening...")
+          vim.cmd("edit " .. file_path)
+        else
+          print("File does not exist, creating...")
+          vim.cmd("edit " .. file_path)
+          vim.api.nvim_buf_set_lines(0, 0, -1, false, { "# notes from " .. os.date("%y-%m-%d") })
+        end
+      end
+
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
@@ -423,6 +440,13 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>nn', open_or_create_note, { desc = '[N]ew [N]ote' })
+      vim.keymap.set('n', '<leader>nf', function()
+        builtin.find_files {
+          cwd = vim.fn.expand("~/Documents/notes/"),
+          prompt_title = 'Find Notes',
+        }
+      end, { desc = '[N]otes [F]ind' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -738,10 +762,16 @@ require('lazy').setup({
         settings = {
           intelephense = {
             format = {
-              enable = true,
+              enable = false,
             },
           },
         },
+      })
+
+      lspconfig.phpactor.setup({
+        cmd = { "phpactor", "language-server" },
+        filetypes = { "php" },
+        root_dir = lspconfig.util.root_pattern("composer.json", ".git"),
       })
 
       lspconfig.marksman.setup({
@@ -950,11 +980,15 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
+    'navarasu/onedark.nvim',
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'tokyonight-moon'
+      require('onedark').setup {
+        style = 'darker',
+        transparent = true,
+      }
+      vim.cmd.colorscheme 'onedark'
     end,
   },
 
