@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     dbeaver-bin
+    deno
     docker
     docker-compose
     firefox-devedition
@@ -21,8 +22,9 @@
     mkcert
     nixd
     nodejs
-    openvpn
     openconnect
+    openvpn
+    phpactor
     pnpm
     typescript-language-server
     vscode

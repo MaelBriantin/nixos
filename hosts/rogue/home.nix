@@ -43,7 +43,7 @@
       rs = "reset";
       cp = "cherry-pick";
     };
-    ignores = [ ".vscode" ".idea" ];
+    ignores = [ ".vscode" ".idea" ".phpactor.json" ];
   };
 
   programs.neovim = {

@@ -5,11 +5,11 @@
     bash
     bat
     btop
+    chromium
     curl
-    deno
     fastfetch
     fd
-    firefox
+    firefox-devedition
     fish
     fzf
     ghostty
@@ -25,7 +25,6 @@
     openssl
     ripgrep
     starship
-    ungoogled-chromium
     unzip
     xclip
     xdg-utils
