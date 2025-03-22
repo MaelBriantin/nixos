@@ -986,7 +986,7 @@ require('lazy').setup({
     config = function()
       require('onedark').setup {
         style = 'darker',
-        transparent = true,
+        transparent = false,
       }
       vim.cmd.colorscheme 'onedark'
     end,
