@@ -5,13 +5,14 @@
     bash
     bat
     btop
-    chromium
     curl
     fastfetch
     fd
+    firefox
     firefox-devedition
     fish
     fzf
+    google-chrome
     ghostty
     git
     gnome-keyring

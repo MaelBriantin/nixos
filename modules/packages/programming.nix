@@ -6,7 +6,6 @@
     deno
     docker
     docker-compose
-    firefox-devedition
     gcc
     gh
     gnumake

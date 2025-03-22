@@ -47,10 +47,13 @@
       sleep-inactive-battery-timeout = 0;
       sleep-inactive-battery-type = "nothing";
     };
+    "org/gnome/desktop/sound" = {
+      event-sounds = false;
+    };
     "org/gnome/shell" = {
       favorite-apps = [
         "com.mitchellh.ghostty.desktop"
-        "firefox-devedition.desktop"
+        "google-chrome.desktop"
         "org.gnome.Nautilus.desktop"
       ];
       disable-user-extensions = false;
@@ -113,29 +116,33 @@
     enable = true;
   };
 
-  programs.firefox-devedition = {
-    enable = true;
-    profiles.default = {
-      bookmarks = {};
-      extensions = with inputs.nur.repos.rycee.firefox-addons; [
-        ublock-origin
-        privacy-badger
-        bitwarden
-        # Add more addons here
-        dark-reader
-        https-everywhere
-        tree-style-tab
-      ];
-    };
-  };
-
-  home.file.".config/nvim".source = ../../dotfiles/nvim; 
-  
-  home.file.".config/ghostty".source = ../../dotfiles/ghostty; 
-
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
+    ".config/nvim".source = ../../dotfiles/nvim;
+    ".config/ghostty".source = ../../dotfiles/ghostty;
+
+    # Rules for Wooting keyboards
+    # Running `sudo udevadm control --reload-rules && sudo udevadm trigger` is required
+    "/etc/udev/rules.d/70-wooting.rules".text = ''
+      # Wooting One Legacy
+      SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff01", TAG+="uaccess"
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff01", TAG+="uaccess"
+
+      # Wooting One update mode
+      SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2402", TAG+="uaccess"
+
+      # Wooting Two Legacy
+      SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff02", TAG+="uaccess"
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff02", TAG+="uaccess"
+
+      # Wooting Two update mode
+      SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2403", TAG+="uaccess"
+
+      # Generic Wooting devices
+      SUBSYSTEM=="hidraw", ATTRS{idVendor}=="31e3", TAG+="uaccess"
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="31e3", TAG+="uaccess"
+    '';
   };
 
   home.sessionVariables = {
