@@ -13,7 +13,7 @@
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
-      accent-colors = "slate";
+      accent-color = "slate";
       enable-hot-corner = false;
     };
     "org/gnome/desktop/background" = {
