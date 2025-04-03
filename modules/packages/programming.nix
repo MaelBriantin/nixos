@@ -23,8 +23,11 @@
     nodejs
     openconnect
     openvpn
+    php84
+    php84Packages.composer
     phpactor
     pnpm
+    symfony-cli
     typescript-language-server
     vscode
     vscode-langservers-extracted

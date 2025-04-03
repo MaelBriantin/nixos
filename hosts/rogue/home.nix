@@ -20,8 +20,11 @@
       picture-uri = "file:///${config.home.homeDirectory}/nixos/wallpapers/nixos.png";
       picture-uri-dark = "file:///${config.home.homeDirectory}/nixos/wallpapers/nixos.png";
     };
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      screensaver = ["<Super>Return"];
+    };
     "org/gnome/desktop/wm/preferences" = {
-      num-workspaces = 6;
+      num-workspaces = 4;
     };
     "org/gnome/desktop/wm/keybindings" = {
       switch-to-workspace-right = ["<Super>l"];
@@ -38,8 +41,10 @@
       move-to-workspace-2 = ["<Shift><Super>2"];
       move-to-workspace-3 = ["<Shift><Super>3"];
       move-to-workspace-4 = ["<Shift><Super>4"];
-      move-to-workspace-5 = ["<Shift><Super>5"];
-      move-to-workspace-6 = ["<Shift><Super>6"];
+      switch-to-application-1 = "unset";
+      switch-to-application-2 = "unset";
+      switch-to-application-3 = "unset";
+      switch-to-application-4 = "unset";
     };
     "org/gnome/settings-daemon/plugins/power" = {
       sleep-inactive-ac-timeout = 0;
@@ -53,7 +58,8 @@
     "org/gnome/shell" = {
       favorite-apps = [
         "com.mitchellh.ghostty.desktop"
-        "google-chrome.desktop"
+        "code.desktop"
+        "chromium-browser.desktop"
         "org.gnome.Nautilus.desktop"
       ];
       disable-user-extensions = false;
@@ -72,7 +78,6 @@
     pkgs.gnomeExtensions.space-bar
     pkgs.gnomeExtensions.switcher
   ];
-      
 
   nixpkgs.config.allowUnfree = true;
 
@@ -106,6 +111,9 @@
       cp = "cherry-pick";
     };
     ignores = [ ".vscode" ".idea" ".phpactor.json" ];
+    extraConfig = {
+      push = { autoSetupRemote = true; };
+    };
   };
 
   programs.neovim = {

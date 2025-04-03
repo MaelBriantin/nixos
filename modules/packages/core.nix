@@ -5,7 +5,9 @@
     bash
     bat
     btop
+    chromium
     curl
+    direnv
     fastfetch
     fd
     firefox
